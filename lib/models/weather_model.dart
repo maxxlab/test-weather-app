@@ -7,10 +7,10 @@ class Weather {
   final String main;
   final String description;
   final double temp;
-  final String feelsLike;
+  final double feelsLike;
   final double tempMin;
   final double tempMax;
-  final String pressure;
+  final int pressure;
   final double windSpeed;
 
   Weather({
@@ -33,10 +33,10 @@ class Weather {
     String? main,
     String? description,
     double? temp,
-    String? feelsLike,
+    double? feelsLike,
     double? tempMin,
     double? tempMax,
-    String? pressure,
+    int? pressure,
     double? windSpeed,
   }) {
     return Weather(
@@ -75,10 +75,10 @@ class Weather {
       main: map['main'] as String,
       description: map['description'] as String,
       temp: map['temp'] as double,
-      feelsLike: map['feelsLike'] as String,
+      feelsLike: map['feelsLike'] as double,
       tempMin: map['tempMin'] as double,
       tempMax: map['tempMax'] as double,
-      pressure: map['pressure'] as String,
+      pressure: map['pressure'] as int,
       windSpeed: map['windSpeed'] as double,
     );
   }
@@ -88,15 +88,15 @@ class Weather {
   factory Weather.fromJson(Map<String, dynamic> json) {
     final weatherData = json['weather'][0];
     return Weather(
-      id: json['id'],
+      id: 'id',
       name: json['name'],
       main: weatherData['main'],
       description: weatherData['description'],
       temp: json['main']['temp'].toDouble(),
-      feelsLike: json['main']['feels_like'].toString(),
+      feelsLike: json['main']['feels_like'].toDouble(),
       tempMin: json['main']['temp_min'].toDouble(),
       tempMax: json['main']['temp_max'].toDouble(),
-      pressure: json['main']['pressure'].toString(),
+      pressure: json['main']['pressure'].toInt(),
       windSpeed: json['wind']['speed'].toDouble(),
     );
   }

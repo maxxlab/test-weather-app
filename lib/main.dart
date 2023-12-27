@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app/features/home/view/home_view.dart';
 
 void main() {
   runApp(
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 21, 111, 171)),
         useMaterial3: true,
       ),
-      home: ,
+      home: const HomeView(),
     );
   }
 }
