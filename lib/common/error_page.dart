@@ -7,7 +7,15 @@ class ErrorText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(error),
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Text(
+          error,
+          textAlign: TextAlign.center,
+          style: const  TextStyle(
+              fontSize: 42, fontWeight: FontWeight.w600, color: Color.fromARGB(255, 211, 81, 72)),
+        ),
+      ),
     );
   }
 }

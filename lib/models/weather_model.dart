@@ -10,7 +10,7 @@ class Weather {
   final double feelsLike;
   final double tempMin;
   final double tempMax;
-  final int pressure;
+  final int humidity;
   final double windSpeed;
 
   Weather({
@@ -22,10 +22,9 @@ class Weather {
     required this.feelsLike,
     required this.tempMin,
     required this.tempMax,
-    required this.pressure,
+    required this.humidity,
     required this.windSpeed,
   });
-
 
   Weather copyWith({
     String? id,
@@ -36,7 +35,7 @@ class Weather {
     double? feelsLike,
     double? tempMin,
     double? tempMax,
-    int? pressure,
+    int? humidity,
     double? windSpeed,
   }) {
     return Weather(
@@ -48,7 +47,7 @@ class Weather {
       feelsLike: feelsLike ?? this.feelsLike,
       tempMin: tempMin ?? this.tempMin,
       tempMax: tempMax ?? this.tempMax,
-      pressure: pressure ?? this.pressure,
+      humidity: humidity ?? this.humidity,
       windSpeed: windSpeed ?? this.windSpeed,
     );
   }
@@ -63,7 +62,7 @@ class Weather {
       'feelsLike': feelsLike,
       'tempMin': tempMin,
       'tempMax': tempMax,
-      'pressure': pressure,
+      'humidity': humidity,
       'windSpeed': windSpeed,
     };
   }
@@ -78,7 +77,7 @@ class Weather {
       feelsLike: map['feelsLike'] as double,
       tempMin: map['tempMin'] as double,
       tempMax: map['tempMax'] as double,
-      pressure: map['pressure'] as int,
+      humidity: map['humidity'] as int,
       windSpeed: map['windSpeed'] as double,
     );
   }
@@ -96,44 +95,43 @@ class Weather {
       feelsLike: json['main']['feels_like'].toDouble(),
       tempMin: json['main']['temp_min'].toDouble(),
       tempMax: json['main']['temp_max'].toDouble(),
-      pressure: json['main']['pressure'].toInt(),
+      humidity: json['main']['humidity'].toInt(),
       windSpeed: json['wind']['speed'].toDouble(),
     );
   }
 
   @override
   String toString() {
-    return 'Weather(id: $id, name: $name, main: $main, description: $description, temp: $temp, feelsLike: $feelsLike, tempMin: $tempMin, tempMax: $tempMax, pressure: $pressure, windSpeed: $windSpeed)';
+    return 'Weather(id: $id, name: $name, main: $main, description: $description, temp: $temp, feelsLike: $feelsLike, tempMin: $tempMin, tempMax: $tempMax, humidity: $humidity, windSpeed: $windSpeed)';
   }
 
   @override
   bool operator ==(covariant Weather other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.name == name &&
-      other.main == main &&
-      other.description == description &&
-      other.temp == temp &&
-      other.feelsLike == feelsLike &&
-      other.tempMin == tempMin &&
-      other.tempMax == tempMax &&
-      other.pressure == pressure &&
-      other.windSpeed == windSpeed;
+
+    return other.id == id &&
+        other.name == name &&
+        other.main == main &&
+        other.description == description &&
+        other.temp == temp &&
+        other.feelsLike == feelsLike &&
+        other.tempMin == tempMin &&
+        other.tempMax == tempMax &&
+        other.humidity == humidity &&
+        other.windSpeed == windSpeed;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      main.hashCode ^
-      description.hashCode ^
-      temp.hashCode ^
-      feelsLike.hashCode ^
-      tempMin.hashCode ^
-      tempMax.hashCode ^
-      pressure.hashCode ^
-      windSpeed.hashCode;
+        name.hashCode ^
+        main.hashCode ^
+        description.hashCode ^
+        temp.hashCode ^
+        feelsLike.hashCode ^
+        tempMin.hashCode ^
+        tempMax.hashCode ^
+        humidity.hashCode ^
+        windSpeed.hashCode;
   }
 }

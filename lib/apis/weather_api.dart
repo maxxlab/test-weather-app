@@ -8,6 +8,7 @@ final weatherApiProvider = Provider((ref) {
 
 abstract class IWeatherApi {
   Future<String> getWeatherForecastByName(String name);
+  Future<String> getWeatherForecastByLocation(double lat, double lon);
 }
 
 class WeatherApi implements IWeatherApi {
@@ -26,7 +27,24 @@ class WeatherApi implements IWeatherApi {
       default:
         print('HTTP Status: ${response.statusCode}');
     }
+    return '';
+  }
+  
+  @override
+  Future<String> getWeatherForecastByLocation(double lat, double lon) async {
+    final response = await http.get(
+      Uri.parse(
+        WeatherAppConstants.cityForecastByLocation(lat, lon),
+      ),
+    );
 
+    switch (response.statusCode) {
+      case 200:
+        print('HTTP Status: ${response.statusCode}');
+        return response.body;
+      default:
+        print('HTTP Status: ${response.statusCode}');
+    }
     return '';
   }
 }

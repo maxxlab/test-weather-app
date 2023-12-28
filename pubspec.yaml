@@ -38,6 +38,8 @@ dependencies:
   flutter_riverpod: ^2.4.9
   fpdart: ^1.1.0
   http: ^1.1.0
+  weather_icons: ^3.0.0
+  geolocator: ^10.1.0
 
 dev_dependencies:
   flutter_test:
