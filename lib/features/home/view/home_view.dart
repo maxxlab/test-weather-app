@@ -24,17 +24,18 @@ class _HomeViewState extends ConsumerState<HomeView> {
     final searchQuery = ref.watch(searchQueryProvider);
     final location = ref.watch(locationProvider);
 
+    final nameOrLocationProvider =
+        (location.latitude == 0 && location.longitude == 0)
+            ? getWeatherForecastNameProvider(
+                searchQuery.isEmpty ? 'New York' : searchQuery)
+            : getWeatherForecastLocationProvider(location);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Weather App'),
         centerTitle: true,
       ),
-      body: ref
-          .watch((location.latitude == 0 && location.longitude == 0)
-              ? getWeatherForecastNameProvider(
-                  searchQuery.isEmpty ? 'New York' : searchQuery)
-              : getWeatherForecastLocationProvider(location))
-          .when(
+      body: ref.watch(nameOrLocationProvider).when(
             data: (data) {
               return Container(
                 padding: const EdgeInsets.all(15.0),
@@ -57,7 +58,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             ),
                           );
                         },
-                        child: data.id != 'none'
+                        child: data.id.isNotEmpty
                             ? Card(
                                 elevation: 15.5,
                                 child: Padding(
@@ -69,14 +70,14 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                         data.name,
                                         style: const TextStyle(
                                           fontSize: 40,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w700,
                                         ),
                                       ),
                                       const Text(
                                         'Today',
                                         style: TextStyle(
                                             fontSize: 26,
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.w500,
                                             color: Color.fromARGB(
                                                 255, 118, 118, 118)),
                                       ),
@@ -87,7 +88,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                         '${data.temp.round().toString()}°C',
                                         style: const TextStyle(
                                             fontSize: 40,
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.w700,
                                             color: Colors.blue),
                                       ),
                                       const SizedBox(

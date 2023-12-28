@@ -9,8 +9,6 @@ final weatherControllerProvider =
   return WeatherController(weatherRepository: weatherRepository);
 });
 
-
-
 final getWeatherForecastNameProvider =
     FutureProvider.family((ref, String name) async {
   final weatherController = ref.watch(weatherControllerProvider.notifier);
@@ -20,8 +18,7 @@ final getWeatherForecastNameProvider =
 final getWeatherForecastLocationProvider =
     FutureProvider.family((ref, Location location) async {
   final weatherController = ref.watch(weatherControllerProvider.notifier);
-  return weatherController.loadWeatherByLocation(
-      lat: location.latitude, lon: location.longitude);
+  return weatherController.loadWeatherByLocation(location: location);
 });
 
 class WeatherController extends StateNotifier<bool> {
@@ -35,9 +32,9 @@ class WeatherController extends StateNotifier<bool> {
     return res;
   }
 
-  Future<Weather> loadWeatherByLocation(
-      {required double lat, required double lon}) async {
-    final res = await _weatherRepository.getWeatherForecastByLocation(lat, lon);
+  Future<Weather> loadWeatherByLocation({required Location location}) async {
+    final res = await _weatherRepository.getWeatherForecastByLocation(
+        location.latitude, location.longitude);
     return res;
   }
 }

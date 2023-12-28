@@ -3,8 +3,7 @@ class WeatherAppConstants {
 
   static String cityForecast(String city) =>
       'https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&appid=$weatherApiKey';
+      
   static String cityForecastByLocation(double lat, double lon) =>
       'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&units=metric&appid=$weatherApiKey';
-  static String cityForecastFiveDays(String city) =>
-      'https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=$weatherApiKey';
 }

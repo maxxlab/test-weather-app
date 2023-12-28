@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app/core/locator.dart';
 import 'package:weather_app/core/providers.dart';
+import 'package:weather_app/core/utils.dart';
 
 class LocationButton extends ConsumerWidget {
   const LocationButton({super.key});
@@ -12,11 +13,13 @@ class LocationButton extends ConsumerWidget {
       onPressed: () async {
         try {
           ref.read(buttonLoadingProvider.notifier).state = true;
+
           final letlon = await getLatLon();
           ref.read(locationProvider.notifier).state = letlon;
+
           ref.read(buttonLoadingProvider.notifier).state = false;
         } catch (e) {
-          print('No Location');
+          showSnackBar(context, 'No location was found');
         }
       },
       style: const ButtonStyle(
@@ -26,7 +29,9 @@ class LocationButton extends ConsumerWidget {
         elevation: MaterialStatePropertyAll(15.5),
       ),
       child: ref.watch(buttonLoadingProvider)
-          ? const CircularProgressIndicator(color: Colors.white,)
+          ? const CircularProgressIndicator(
+              color: Colors.white,
+            )
           : const Text('My Location', style: TextStyle(fontSize: 25)),
     );
   }

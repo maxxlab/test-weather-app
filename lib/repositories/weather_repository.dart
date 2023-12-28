@@ -16,45 +16,15 @@ class WeatherRepository {
 
   Future<Weather> getWeatherForecastByName(String name) async {
     final response = await _weatherApi.getWeatherForecastByName(name);
-    if (response.isNotEmpty) {
-      var jsonData = jsonDecode(response);
-      Weather weather = Weather.fromJson(jsonData);
-      return weather;
-    } else {
-      print('Data is empty');
-      return Weather(
-          id: 'none',
-          name: name,
-          main: 'main',
-          description: 'description',
-          temp: 0,
-          feelsLike: 0,
-          tempMin: 0,
-          tempMax: 0,
-          humidity: 0,
-          windSpeed: 0);
-    }
+    var jsonData = jsonDecode(response);
+
+    return Weather.fromJson(jsonData);
   }
 
   Future<Weather> getWeatherForecastByLocation(double lat, double lon) async {
     final response = await _weatherApi.getWeatherForecastByLocation(lat, lon);
-    if (response.isNotEmpty) {
-      var jsonData = jsonDecode(response);
-      Weather weather = Weather.fromJson(jsonData);
-      return weather;
-    } else {
-      print('Data is empty');
-      return Weather(
-          id: 'none',
-          name: 'name',
-          main: 'main',
-          description: 'description',
-          temp: 0,
-          feelsLike: 0,
-          tempMin: 0,
-          tempMax: 0,
-          humidity: 0,
-          windSpeed: 0);
-    }
+    var jsonData = jsonDecode(response);
+
+    return Weather.fromJson(jsonData);
   }
 }
