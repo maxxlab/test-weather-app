@@ -10,6 +10,11 @@
  - State Management: **Riverpod**
  - Design: **Material Design 3**
  - API: **OpenWeather**
+## Features
+
+ - Search for weather for cities from all over the world through the **search bar**
+ - View a **detailed description** of the weather for the selected city
+ - Get weather information at your **current location**
 
 ## Use cases
 ![1](https://github.com/maxxlab/test-weather-app/assets/42914015/c6d31108-46d6-4e1b-8c35-06bfbad89ba8)
